@@ -1,0 +1,4 @@
+"0","Outcomes <- read_excel(""Assignment  6 Outcome data.xlsx"")"
+"0","T2O <- augment(Kmeans,Outcomes)"
+"0","T2O$.cluster=as.numeric(T2O$.cluster)"
+"0","ggcorr(T2O[,-1:-2,], method = c(""everything"", ""pearson""))"

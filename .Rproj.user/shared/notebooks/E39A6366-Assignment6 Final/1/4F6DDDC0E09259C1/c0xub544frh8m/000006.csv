@@ -1,0 +1,4 @@
+"0","p2 <- ggplot(Clust, aes(x =.fittedPC1 , y =.fittedPC2)) +"
+"0","  geom_point(aes(color = .cluster), alpha = 0.8, size=1.5*(SD1$wx)) +"
+"0","  labs(x=""Move Up/Down & Left/Right"",y=""Move Front/Back"",title = ""Movement of Jumping"")"
+"0","p2"

@@ -1,0 +1,18 @@
+"0","library(tidyverse) #to clean and prep data"
+"0","library(tidymodels) # to access some of the tidy model tools"
+"0","library(janitor) # to clean data"
+"0","library(googledrive)#to get files from Google drive"
+"0","library(broom)#to extract the PCs and Clusters"
+"0","library(readxl)"
+"0","library(ggplot2)"
+"0","library(GGally)"
+"2","package ‘GGally’ was built under R version 4.0.3"
+"2","Registered S3 method overwritten by 'GGally':
+  method from   
+  +.gg   ggplot2
+"
+"0","library(factoextra)"
+"2","package ‘factoextra’ was built under R version 4.0.3"
+"2","Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+"
+"0","library(dplyr)"
