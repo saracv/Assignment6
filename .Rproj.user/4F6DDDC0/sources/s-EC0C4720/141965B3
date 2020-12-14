@@ -3,22 +3,22 @@
     "path": "~/GitHub/Assignment6/Assignment6 Final.Rmd",
     "project_path": "Assignment6 Final.Rmd",
     "type": "r_markdown",
-    "hash": "3461145214",
+    "hash": "2717961861",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1607955804591.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
-        "cursorPosition": "21,16",
-        "scrollLine": "0"
+        "cursorPosition": "156,272",
+        "scrollLine": "141"
     },
     "folds": "",
-    "lastKnownWriteTime": 1607956106,
+    "lastKnownWriteTime": 1607956263,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1607956150012,
+    "last_content_update": 1607956263374,
     "read_only": false,
     "read_only_alternatives": []
 }
