@@ -159,7 +159,7 @@ Q5..How.often.do.you.exercise...5.almost.every.day..4.once.or.twice.a.week..3.on
 
 ##Answer: We would like to choose cluster as an indicator to predict the score of jumping rope. By observing the number of jumps for different clusters in T2O, we could find that people in cluster3 have better performance on average. According to p2 we could figure out that group members in cluster 3 have least movement. So, there is an inverse relationship bwtween number of jumps and movements during jumping, and it's safe to make a conclusion that in order to jump more in the limited time, expert would keep the least level of movements to save both energy and time. Therefore, we would like to assign higher scores for group members in cluster 3. On the other side, members in cluster 1 and 3 have relative larger movement, so we will assign lower scores for them. 
 
-## Our advice would be that try to make limited movements in left to right and front to back during your jumps. Don't jump too high and try to jump in the same place.You cna do this by marking and X on the floor with take and ensruring you stay within the bounds of the X.
+## Our advice would be that try to make limited movements in left to right and front to back during your jumps. Don't jump too high and try to jump in the same place.You can do this by marking and X on the floor with tape and ensuring you stay within the bounds of the X.
 
 ```{r}
 p2 <- ggplot(Clust, aes(x =.fittedPC1 , y =.fittedPC2)) +
