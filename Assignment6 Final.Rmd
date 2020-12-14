@@ -53,7 +53,10 @@ plot(PCA,type="lines")
 
 ##K-means
 ```{r}
-
+library(ggplot2)
+library(GGally)
+library(factoextra)
+library(dplyr)
 KT <- SD3 %>% select(5:6)
 Kmeans <- kmeans(KT, 3)
 Clust <- augment(Kmeans,KT)
@@ -68,7 +71,8 @@ p1 #basically beautifying the biplot
 
 ##Measure correlation to outcome (# of jumps in one minute)
 ```{r}
-Outcomes <- read_excel("Assignment  6 Outcome data.xlsx")
+Outcomes <- readxl::read_excel("Assignment  6 Outcome data.xlsx")
+Task2_outcomes <- augment(Kmeans,Outcomes)
 T2O <- augment(Kmeans,Outcomes)
 T2O$.cluster=as.numeric(T2O$.cluster)
 ggcorr(T2O[,-1:-2,], method = c("everything", "pearson"))
@@ -155,16 +159,14 @@ Q5..How.often.do.you.exercise...5.almost.every.day..4.once.or.twice.a.week..3.on
 
 ##Q:If you could only choose one thing to predict the score for each member of your group (raw data variable, a cluster or a PC) what would it be and why?
 
-##Answer: We would like to choose cluster as an indicator to predict the score of jumping rope. By observing the number of jumps for different clusters in T2O, we could find that people in cluster3 have better performance on average. According to p2 we could figure out that group members in cluster 3 have least movement. So, there is an inverse relationship bwtween number of jumps and movements during jumping, and it's safe to make a conclusion that in order to jump more in the limited time, expert would keep the least level of movements to save both energy and time. Therefore, we would like to assign higher scores for group members in cluster 3. On the other side, members in cluster 1 and 3 have relative larger movement, so we will assign lower scores for them. 
-
-## Our advice would be that try to make limited movements in left to right and front to back during your jumps. Don't jump too high and try to jump in the same place.You cna do this by marking and X on the floor with take and ensruring you stay within the bounds of the X.
+##Answer: We would like to choose cluster as an indicator to predict the score of jumping rope. By observing the number of jumps for different clusters in T2O, we could find that people in cluster3 have better performance on average. According to p1 we could figure out that group members in cluster 3 have least movement. So, there is an inverse relationship bwtween number of jumps and movements during jumping, and it's safe to make a conclusion that in order to jump more in the limited time, expert would keep the least level of movements to save both energy and time. Therefore, we would like to assign higher scores for group members in cluster 3. On the other side, members in cluster 1 and 2 have relative larger movement, so we will assign lower scores for them. 
+## Advice: Our advice would be that try to make limited movements in left to right and front to back during your jumps. Don't jump too high and try to jump in the same place.You cna do this by marking and X on the floor with take and ensruring you stay within the bounds of the X.
 
 ```{r}
-p2 <- ggplot(Clust, aes(x =.fittedPC1 , y =.fittedPC2)) +
-  geom_point(aes(color = .cluster), alpha = 0.8, size=1.5*(SD1$wx)) +
-  labs(x="Move Up/Down & Left/Right",y="Move Front/Back",title = "Movement of Jumping")
-p2
+p1
 jumps <- Task2_outcomes$Jumps
-p3 <- ggplot(data = Task2_outcomes, aes(Name,Jumps)) +geom_point(aes(color = .cluster), alpha = 0.8,pch=3,cex=4)
-p3
+na <- Task2_outcomes$Name
+p2 <- ggplot(data = Task2_outcomes, aes(Name,Jumps)) +geom_point(aes(color = .cluster), alpha = 0.8,pch=3,cex=4)
+p2
+
 ```
