@@ -1,4 +1,0 @@
-"0","Outcomes <- read_excel(""Assignment  6 Outcome data.xlsx"")"
-"2","Error in read_excel(""Assignment  6 Outcome data.xlsx"") : 
-  could not find function ""read_excel""
-"
