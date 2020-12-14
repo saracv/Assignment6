@@ -59,8 +59,11 @@ Kmeans <- kmeans(KT, 3)
 Clust <- augment(Kmeans,KT)
 p1 <- 
   ggplot(Clust, aes(x =.fittedPC1 , y =.fittedPC2)) +
-  geom_point(aes(color = .cluster), alpha = 0.8, size=1.5*(SD1$wx))
+  geom_point(aes(color = .cluster), alpha = 0.8, size=1.5*(SD1$wx))+
+  labs(x="Move Up/Down & Left/Right",y="Move Front/Back",title = "Movement of Jumping")
 p1 #basically beautifying the biplot
+
+## Since both our x and y axis measure the movement of jumping, group members in the cluster that is colser to point (0,0) would be experts; person in cluster that far away from (0,0) would be novice. 
 ```
 
 ##Measure correlation to outcome (# of jumps in one minute)
