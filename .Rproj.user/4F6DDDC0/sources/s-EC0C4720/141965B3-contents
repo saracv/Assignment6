@@ -19,7 +19,7 @@ library(broom)#to extract the PCs and Clusters
 ```
 
 
-#Task II: K-means
+#Task II: K-mean
 
 Downloading files - This sections should only be used when downloading files for the first time or downloading new files.
 ```{r}
