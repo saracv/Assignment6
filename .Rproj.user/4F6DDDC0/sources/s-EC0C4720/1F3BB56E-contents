@@ -1,0 +1,30 @@
+---
+title: "Taks II- Kmeans with time"
+author: "AltGroup"
+date: "12/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Libraries
+```{r}
+library(tidyverse) #to clean and prep data
+library(tidymodels) # to access some of the tidy model tools
+library(janitor) # to clean data
+library(googledrive)#to get files from Google drive
+library(broom)#to extract the PCs and Clusters
+```
+
+
+## Task II - K Means
+```{r}
+sensor_list <- list.files(pattern="*.csv")#creating a list of sensor files
+WD <- getwd()#get working directory to combine files
+DF <- SD %>% ungroup() %>% select(2:6) %>% mutate(time=round(time,2)) %>% distinct()
+DF$time= as.character(DF$time) 
+DF1 <- DF %>% pivot_wider(names_from = time, values_from = c(wx,wy,wz))
+```
+

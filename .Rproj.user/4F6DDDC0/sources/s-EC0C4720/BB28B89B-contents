@@ -1,0 +1,76 @@
+---
+title: "Assignment 6_Task II"
+output: html_document
+---
+
+Set-up
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Libraries
+```{r}
+library(tidyverse) #to clean and prep data
+library(tidymodels) # to access some of the tidy model tools
+library(janitor) # to clean data
+library(googledrive)#to get files from Google drive
+library(broom)#to extract the PCs and Clusters
+library(ggplot2) #to plot
+library(GGally)#to plot correlations
+library(readxl)#to read excel files
+```
+
+
+#Task II: K-means
+
+Downloading files - This sections should only be used when downloading files for the first time or downloading new files.
+```{r}
+#using google drive to download files from Google Drive
+#folder_url <- "https://drive.google.com/drive/folders/1am3wIQPXFvvFAmsJG2m85HLl0G63rJE4?usp=sharing" #This is the Googledrive folder with files
+#folder <- drive_get(as_id(folder_url))
+#csv_files <- drive_ls(folder, type = "csv")
+#walk(csv_files$id, ~ drive_download(as_id(.x), overwrite = TRUE))
+```
+
+Combining the files
+```{r}
+sensor_list <- list.files(pattern="*.csv")#creating a list of sensor files
+WD <- getwd()#get working directory to combine files
+SD <- sensor_list %>% map_dfr(read_csv,.id = "WD") %>% group_by(WD) %>% mutate(id=cur_group_id()) %>% filter(time<=60) #combine all files and filter anything under a minute or 60s
+SD1 <- SD %>% summarise(wx=mad(wx),wy=mad(wy),wz=mad(wz)) %>% ungroup()
+SD2 <- SD1 %>% select(-1)
+```
+PCA 
+```{r}
+
+PCA <- prcomp(SD2, scale.=TRUE)# run PCA
+summary(PCA)#get cumulative Proportion
+PCA$rotation #Understand what each component is made up
+SD3 <- augment(PCA,data=SD2) #create a frame with all the information 
+biplot(PCA)
+plot(PCA,type="lines")
+#From the biplot and the scree plot it makes sense to remove the 3rd components as PC1 and 2 account for more than 99% of the variance. 
+```
+
+K-means
+
+```{r}
+KT <- SD3 %>% select(5:6)
+Kmeans <- kmeans(KT, 3)
+Clust <- augment(Kmeans,KT)
+p1 <- 
+  ggplot(Clust, aes(x =.fittedPC1 , y =.fittedPC2)) +
+  geom_point(aes(color = .cluster), alpha = 0.8, size=1.5*(SD1$wx))
+p1 #basically beautifying the biplot
+```
+Measure correlation to outcome (# of jumps in one minute)
+```{r}
+Outcomes <- read_excel("Assignment  6 Outcome data.xlsx")
+T2O <- augment(Kmeans,Outcomes)
+T2O$.cluster=as.numeric(T2O$.cluster)
+ggcorr(T2O[,-1:-2,], method = c("everything", "pearson"))
+cor <- cor(T2O[,-1:-2,], method = "pearson" )
+cor
+#There seems to be a moderate correlation (-.58) between the clusters and the number of number of jumps. 
+```
+
