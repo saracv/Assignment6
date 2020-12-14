@@ -164,7 +164,7 @@ Q5..How.often.do.you.exercise...5.almost.every.day..4.once.or.twice.a.week..3.on
 ```{r}
 p2 <- ggplot(Clust, aes(x =.fittedPC1 , y =.fittedPC2)) +
   geom_point(aes(color = .cluster), alpha = 0.8, size=1.5*(SD1$wx)) +
-  labs(x="Move Up/Down & Left/Right",y="Move Front/Back",title = "Movement of Jumping")
+  labs(x="Move Up/Down & Left/Right (PC1)",y="Move Front/Back",title = "Movement of Jumping (PC2)")
 p2
 jumps <- T2O$Jumps
 p3 <- ggplot(data = T2O, aes(Name,Jumps)) +geom_point(aes(color = .cluster), alpha = 0.8,pch=3,cex=4)
