@@ -1,3 +1,0 @@
-"0","jumps <- T2O$Jumps"
-"0","p3 <- ggplot(data = T2O, aes(Name,Jumps)) +geom_point(aes(color = .cluster), alpha = 0.8,pch=3,cex=4)"
-"0","p3"
